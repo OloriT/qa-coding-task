@@ -1,0 +1,202 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 6,
+    "passes": 6,
+    "pending": 0,
+    "failures": 0,
+    "start": "2024-09-28T11:05:27.948Z",
+    "end": "2024-09-28T11:06:26.843Z",
+    "duration": 58895,
+    "testsRegistered": 6,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "93b6858b-87e2-4e77-9e56-ef16e9f41b15",
+      "title": "",
+      "fullFile": "cypress\\e2e\\placeorder.cy.js",
+      "file": "cypress\\e2e\\placeorder.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "84842027-d5b4-4859-a31e-58ef151739ef",
+          "title": "Place and Confirm Order",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Launch Website",
+              "fullTitle": "Place and Confirm Order Launch Website",
+              "timedOut": null,
+              "duration": 9295,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//1. The user visits the address\nloginPage.baseUrl();",
+              "err": {},
+              "uuid": "b85da4f8-ea11-41c1-8331-f73fc2b1593b",
+              "parentUUID": "84842027-d5b4-4859-a31e-58ef151739ef",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Sign In",
+              "fullTitle": "Place and Confirm Order Sign In",
+              "timedOut": null,
+              "duration": 8079,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//2. click on signin/login button\nloginPage.signLoginButton();\n//enter credentials\n//enter username\nloginPage.enterUsername(loginPage.userName);\n//enter password\nloginPage.enterPassword(loginPage.passWord);\n//click on the login button to login\nloginPage.loginButton();",
+              "err": {},
+              "uuid": "679fcae1-a79f-452c-a562-ba753843dbf7",
+              "parentUUID": "84842027-d5b4-4859-a31e-58ef151739ef",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Get Label and Associated Price",
+              "fullTitle": "Place and Confirm Order Get Label and Associated Price",
+              "timedOut": null,
+              "duration": 136,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//3. On landing page, under FEATURED ITEMS we see a list of apparels.\n//Get the label and associated price of those item.\nconst labels = '.product-image-wrapper > .single-products > .productinfo > p';\ncy.get(labels).should('be.visible');\nconst prices = '.product-image-wrapper > .single-products > .productinfo > h2';\ncy.get(prices).should('be.visible');\n//Fetch them and sort it as per their price [Low to High] and print it on Console [Label & Price]\ncy.get('.features_items').each($el => {\n  $el.find(labels).text();\n  $el.find(prices).text();\n  cy.log(`Label: ${labels}, Price: ${prices}`);\n});",
+              "err": {},
+              "uuid": "d0c8c98b-9f87-43b9-bee0-faf0502e599e",
+              "parentUUID": "84842027-d5b4-4859-a31e-58ef151739ef",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Select Item and Add to Cart",
+              "fullTitle": "Place and Confirm Order Select Item and Add to Cart",
+              "timedOut": null,
+              "duration": 18614,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//4a. click on dress under Women\ncy.get(':nth-child(1) > .panel-heading > .panel-title').click({\n  force: true\n});\ncy.wait(3000);\n//b. click on Women Top products\ncy.get('#Women > .panel-body > ul > :nth-child(2)').click({\n  force: true\n});\ncy.wait(3000);\n//c. Select the fancy green top and add to cart\ncy.get(':nth-child(10) > .product-image-wrapper > .single-products > .productinfo > .btn').click({\n  force: true\n});\ncy.wait(3000);\n//Confirm the 1st product has been added to cart({ force: true })\nloginPage.confirmCart();\n//click on continue shopping to add product 2\nloginPage.continueButton();\ncy.wait(3000);\n//d. Select Summer White Top and add to cart as well.\ncy.get(':nth-child(8) > .product-image-wrapper > .single-products > .productinfo > .btn').click({\n  force: true\n});\ncy.wait(3000);\n//Confirm the 1st product has been added to cart({ force: true })\nloginPage.confirmCart();\n//click on continue shopping to add product 2\nloginPage.continueButton();\ncy.wait(3000);",
+              "err": {},
+              "uuid": "3f45d190-df54-4087-b9e6-37b5deb0e2e5",
+              "parentUUID": "84842027-d5b4-4859-a31e-58ef151739ef",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "View Cart",
+              "fullTitle": "Place and Confirm Order View Cart",
+              "timedOut": null,
+              "duration": 12063,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//5.a Click View Cart button in the pop-up to proceed to checkout\ncy.get('u').click({\n  force: true\n});\n//confirm that click on View Cart redirects the user to the cart page\ncy.url().should('eq', 'https://www.automationexercise.com/view_cart');\n//5b. Proceed to checkout\ncy.get('.col-sm-6 > .btn').click({\n  force: true\n});\n//confirm user is directed to checkout page\ncy.url().should('eq', 'https://www.automationexercise.com/checkout');\n//5c. Add the comment ”Order placed.”\ncy.get('.form-control').type('Order placed');\n//5d. click on place order\ncy.get(':nth-child(7) > .btn').click({\n  force: true\n});\n//5e. enter card details\n//enter card name\nloginPage.enterCardName(loginPage.cardName);\n//enter card number\nloginPage.enterCardNo(loginPage.cardNumber);\n//enter card cvv\nloginPage.enterCvv(loginPage.cvvNo);\n//enter expiration month\ncy.get('[data-qa=\"expiry-month\"]').type('01');\n//enter expiration year\ncy.get('[data-qa=\"expiry-year\"]').type('1990');\n//5f.click on pay and confirm order\ncy.get('[data-qa=\"pay-button\"]').click({\n  force: true\n});",
+              "err": {},
+              "uuid": "fc304bf6-dc62-4363-9403-9bf8e32950ce",
+              "parentUUID": "84842027-d5b4-4859-a31e-58ef151739ef",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Confirm Placed Order",
+              "fullTitle": "Place and Confirm Order Confirm Placed Order",
+              "timedOut": null,
+              "duration": 15,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//6.a Confirm Order has been placed\n// cy.get('.col-sm-9 > p').should('Congratulations! Your order has been confirmed!')\ncy.contains('Congratulations! Your order has been confirmed!');\ncy.get('.col-sm-9 > p').each($el => {\n  // Extract the text content of the element\n  const text = $el.text();\n  // Print the text content to the console\n  console.log(text);\n});",
+              "err": {},
+              "uuid": "3f8af8aa-df08-4325-aeb5-963101ff96d3",
+              "parentUUID": "84842027-d5b4-4859-a31e-58ef151739ef",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "b85da4f8-ea11-41c1-8331-f73fc2b1593b",
+            "679fcae1-a79f-452c-a562-ba753843dbf7",
+            "d0c8c98b-9f87-43b9-bee0-faf0502e599e",
+            "3f45d190-df54-4087-b9e6-37b5deb0e2e5",
+            "fc304bf6-dc62-4363-9403-9bf8e32950ce",
+            "3f8af8aa-df08-4325-aeb5-963101ff96d3"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 48202,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "charts": true,
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportDir": "cypress/reports",
+        "chromeWebSecurity": false
+      },
+      "version": "6.2.0"
+    }
+  }
+}
